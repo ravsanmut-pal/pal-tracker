@@ -30,7 +30,7 @@ run:
     mysql -uroot < databases/tracker/create_databases.sql
     chmod +x gradlew
     ./gradlew -P version=$(cat ../version/number) build
-    ./gradlew testMigrate clean build || (service mysql stop && exit 1)
+    ./gradlew testMigrate clean build || (service mysql stop && exit 1) --info
     service mysql stop
 
     cp build/libs/pal-tracker-*.jar ../build-output
