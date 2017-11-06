@@ -26,11 +26,14 @@ public  static void main(String args[]){
     SpringApplication.run(PalTrackerApplication.class, args);
 }
 
+
     @Bean
-    TimeEntryRepository timeEntryRepository() {
+    TimeEntryRepository jdbcTimeEntryRepository(DataSource dataSource){
+
+        //MysqlDataSource dataSource = new MysqlDataSource();
+        //dataSource.setUrl(System.getenv("SPRING_DATASOURCE_URL"));
 
         return new JdbcTimeEntryRepository(dataSource);
-
     }
 
 
