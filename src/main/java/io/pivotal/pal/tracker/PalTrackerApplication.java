@@ -18,6 +18,9 @@ import java.util.TimeZone;
 @SpringBootApplication
 public class PalTrackerApplication{
 
+    @Autowired
+    private  DataSource dataSource;
+
 public  static void main(String args[]){
     TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
     SpringApplication.run(PalTrackerApplication.class, args);
@@ -26,9 +29,6 @@ public  static void main(String args[]){
     @Bean
     TimeEntryRepository timeEntryRepository() {
 
-        MysqlDataSource dataSource  = new MysqlDataSource();
-
-        dataSource.setUrl(System.getenv("SPRING_DATASOURCE_URL"));
         return new JdbcTimeEntryRepository(dataSource);
 
     }
